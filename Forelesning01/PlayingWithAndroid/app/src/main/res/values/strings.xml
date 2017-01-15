@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">PlayingWithAndroid</string>
+    <string name="hello_world">Hello World!</string>
+    <string name="title_activity_other">OtherActivity</string>
+    <string name="other_activity_text">En hel masse informativ tekst.</string>
+    <string name="do_something">Do Something</string>
+</resources>
