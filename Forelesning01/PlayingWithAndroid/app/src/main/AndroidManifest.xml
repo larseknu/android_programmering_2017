@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="no.hiof.larseknu.playingwithandroid">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
@@ -19,11 +21,6 @@
         <activity
             android:name=".OtherActivity"
             android:label="@string/title_activity_other">
-            <intent-filter>
-                <action android:name="no.hiof.larseknu.playingwithandroid.other_activity" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
         </activity>
     </application>
 

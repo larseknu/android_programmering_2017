@@ -66,7 +66,7 @@ public class MainActivity extends Activity {
         if (item.getItemId() == R.id.do_something_menu_item) {
             Toast.makeText(this, "Did something!", Toast.LENGTH_LONG).show();
 
-            startActivity(new Intent("no.hiof.larseknu.playingwithandroid.other_activity"));
+            startActivity(new Intent(this, OtherActivity.class));
 
             return true;
         }
