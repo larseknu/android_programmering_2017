@@ -1,0 +1,50 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/activity_vertical_margin"
+    android:shrinkColumns="2"
+    android:stretchColumns="0,1,2"
+    android:collapseColumns="3">
+
+    <TextView
+        android:text="@string/movies"
+        android:background="#ccc"/>
+
+    <TableRow>
+        <TextView
+            android:text="@string/one"
+            android:background="@color/purple"
+            android:layout_width="match_parent"/>
+        <TextView
+            android:text="@string/the_shawshank_redemption"
+            android:background="@color/blue"
+            android:layout_width="match_parent"/>
+        <TextView
+            android:text="@string/stars_the_shawshank_redemption"
+            android:background="@color/purple"
+            android:layout_width="match_parent"/>
+        <TextView
+            android:text="@string/score9_3"
+            android:background="@color/blue"
+            android:layout_width="match_parent"/>
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:text="@string/two"
+            android:background="@color/blue"
+            android:layout_width="match_parent"/>
+        <TextView
+            android:text="@string/despicable_me"
+            android:background="@color/purple"
+            android:layout_width="match_parent"/>
+        <TextView
+            android:text="@string/stars_despicable_me"
+            android:background="@color/blue"
+            android:layout_width="match_parent"/>
+        <TextView
+            android:text="@string/score7_6"
+            android:background="@color/purple"
+            android:layout_width="match_parent"/>
+    </TableRow>
+
+</TableLayout>
