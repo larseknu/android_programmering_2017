@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">PlayingWithFragments</string>
+    <string name="this_is_fragment">This is fragment</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="happysad">HappySad</string>
+    <string name="buttonhandling">ButtonHandling</string>
+    <string name="click_count">Click count</string>
+    <string name="push_me">Push me</string>
+    <string name="title_activity_button_handling">ButtonHandlingActivity</string>
+    <string name="title_activity_happysad">HappySadActivity</string>
+    <string name="title_activity_movie_detail">MovieDetailActivity</string>
+</resources>
