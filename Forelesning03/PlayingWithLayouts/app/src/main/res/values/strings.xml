@@ -38,5 +38,7 @@
     <string name="poster_frame">Poster Frame</string>
     <string name="movies">Movies</string>
     <string name="show_smileys">Show Smileys</string>
+    <string name="hello">Hello</string>
+    <string name="world">world</string>
 
 </resources>
