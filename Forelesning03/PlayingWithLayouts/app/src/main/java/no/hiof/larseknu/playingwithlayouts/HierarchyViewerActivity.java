@@ -26,6 +26,6 @@ public class HierarchyViewerActivity extends Activity {
         smileysViewStub.setVisibility(visibleViewStub ? View.GONE : View.VISIBLE);
 
         boolean visible = (smileys.getVisibility() == View.VISIBLE);
-        smileys.setVisibility(visible ? View.GONE : View.VISIBLE);
+        //smileys.setVisibility(visible ? View.GONE : View.VISIBLE);
     }
 }

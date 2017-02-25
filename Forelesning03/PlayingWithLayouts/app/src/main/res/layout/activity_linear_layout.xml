@@ -9,24 +9,23 @@
         android:orientation="horizontal"
         android:weightSum="3">
 
-        <TextView
+        <View
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/left"
+            android:layout_height="1dp"
             android:layout_weight="1"
             android:background="#79f" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/middle"
             android:background="#799" />
 
-        <TextView
+        <View
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/right"
-            android:layout_weight="2"
+            android:layout_height="1dp"
+            android:layout_weight="1"
             android:background="#7ff" />
 
     </LinearLayout>
