@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/colours"
+        android:icon="@drawable/ic_color"
+        android:title="Colors"
+        app:showAsAction="ifRoom|withText" />
+
+    <item
+        android:id="@+id/snackbar"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:title="Snackbar"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/animals"
+        android:icon="@drawable/ic_animal"
+        android:title="Animals"
+        app:showAsAction="always" />
+
+</menu>
