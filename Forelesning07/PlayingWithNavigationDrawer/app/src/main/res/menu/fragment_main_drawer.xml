@@ -4,39 +4,39 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_shows"
-            android:icon="@android:drawable/ic_menu_camera"
+            android:icon="@drawable/ic_tv_white_24dp"
             android:title="@string/shows" />
         <item
             android:id="@+id/nav_movies"
-            android:icon="@android:drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_movie_creation_white_24dp"
             android:title="@string/movies" />
         <item
             android:id="@+id/nav_lists"
-            android:icon="@android:drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_list_white_24dp"
             android:title="@string/lists" />
         <item
             android:id="@+id/nav_shows2"
-            android:icon="@android:drawable/ic_menu_camera"
+            android:icon="@drawable/ic_tv_white_24dp"
             android:title="@string/shows" />
         <item
             android:id="@+id/nav_movies2"
-            android:icon="@android:drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_movie_creation_white_24dp"
             android:title="@string/movies" />
         <item
             android:id="@+id/nav_lists2"
-            android:icon="@android:drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_list_white_24dp"
             android:title="@string/lists" />
         <item
             android:id="@+id/nav_shows3"
-            android:icon="@android:drawable/ic_menu_camera"
+            android:icon="@drawable/ic_tv_white_24dp"
             android:title="@string/shows" />
         <item
             android:id="@+id/nav_movies3"
-            android:icon="@android:drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_movie_creation_white_24dp"
             android:title="@string/movies" />
         <item
             android:id="@+id/nav_lists3"
-            android:icon="@android:drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_list_white_24dp"
             android:title="@string/lists" />
     </group>
 
@@ -44,11 +44,11 @@
         <menu>
             <item
                 android:id="@+id/nav_settings"
-                android:icon="@android:drawable/ic_menu_share"
+                android:icon="@drawable/ic_settings_white_24dp"
                 android:title="@string/settings" />
             <item
                 android:id="@+id/nav_help_feedback"
-                android:icon="@android:drawable/ic_menu_send"
+                android:icon="@drawable/ic_live_help_white_24dp"
                 android:title="@string/help_feedback" />
         </menu>
     </item>
