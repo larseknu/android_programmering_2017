@@ -37,7 +37,8 @@ public class Movie {
                 R.drawable.spirited_away,
                 R.drawable.star_wars_the_force_awakens,
                 R.drawable.the_hobbit,
-                R.drawable.up
+                R.drawable.up,
+                R.drawable.pulp_fiction
         };
 
         String[] titles = {"Captain America Civil War",
@@ -46,7 +47,8 @@ public class Movie {
                 "Spirited Away",
                 "Star Wars The Force Awakens",
                 "The Hobbit",
-                "Up"};
+                "Up",
+                "Pulp Fiction"};
 
         for (int i = 0; i < posters.length; i++) {
 

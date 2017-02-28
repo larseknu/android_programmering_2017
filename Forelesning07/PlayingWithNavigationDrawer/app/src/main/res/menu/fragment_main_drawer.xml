@@ -14,6 +14,30 @@
             android:id="@+id/nav_lists"
             android:icon="@android:drawable/ic_menu_gallery"
             android:title="@string/lists" />
+        <item
+            android:id="@+id/nav_shows2"
+            android:icon="@android:drawable/ic_menu_camera"
+            android:title="@string/shows" />
+        <item
+            android:id="@+id/nav_movies2"
+            android:icon="@android:drawable/ic_menu_slideshow"
+            android:title="@string/movies" />
+        <item
+            android:id="@+id/nav_lists2"
+            android:icon="@android:drawable/ic_menu_gallery"
+            android:title="@string/lists" />
+        <item
+            android:id="@+id/nav_shows3"
+            android:icon="@android:drawable/ic_menu_camera"
+            android:title="@string/shows" />
+        <item
+            android:id="@+id/nav_movies3"
+            android:icon="@android:drawable/ic_menu_slideshow"
+            android:title="@string/movies" />
+        <item
+            android:id="@+id/nav_lists3"
+            android:icon="@android:drawable/ic_menu_gallery"
+            android:title="@string/lists" />
     </group>
 
     <item android:title="@string/settings_header">
