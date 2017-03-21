@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">PlayingWithServices</string>
+    <string name="startondemandservice">StartOnDemandService</string>
+    <string name="startworkerservice">StartWorkerService</string>
+</resources>
