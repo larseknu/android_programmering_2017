@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/PlayingWithNavigationDrawer.iml" filepath="$PROJECT_DIR$/PlayingWithNavigationDrawer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PlayingWithSQLite.iml" filepath="$PROJECT_DIR$/PlayingWithSQLite.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
