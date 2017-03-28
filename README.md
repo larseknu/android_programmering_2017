@@ -1,6 +1,15 @@
 # Eksempler Android-Programmering 2017
 Eksempler til kurs i Android-Programmering 2017 ved Høgskolen i Østfold
 
+## Forelesning 10
+* SQLite
+
+## Forelesning 09
+* Services
+
+## Forelesning 08
+* Threads
+
 ## Forelesning 07
 * Navigation Drawer
 * Floating Action Button (FAB)
