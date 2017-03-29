@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -68,16 +69,31 @@ public class ShowActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String[] showTitles = getResources().getStringArray(R.array.shows);
-                Show show = showDataSource.createShow(showTitles[showNumber++%showTitles.length], new Random().nextInt(17)+2000, null);
-                showDataSource.createEpisode(show.getId(), "Pilot", 1, 1, "Brilliant physicist roommates Leonard and Sheldon meet their new neighbor Penny, who begins showing them that as much as they know about science, they know little about actual living.");
-                showDataSource.createEpisode(show.getId(), "The Big Bran Hypothesis", 2, 1, "Brilliant physicist roommates Leonard and Sheldon meet their new neighbor Penny, who begins showing them that as much as they know about science, they know little about actual living.");
-
-                Log.v(ShowActivity.class.getName(), show.getTitle() + " " + show.getYear() + " " + show.getId());
-
-                showListAdapter.add(show);
+                CreateShow createShow = new CreateShow();
+                createShow.execute();
             }
         });
+    }
+
+
+    public class CreateShow extends AsyncTask<Void, Void, Show>   {
+
+        @Override
+        protected Show doInBackground(Void... params) {
+            String[] showTitles = getResources().getStringArray(R.array.shows);
+            Show show = showDataSource.createShow(showTitles[showNumber++%showTitles.length], new Random().nextInt(17)+2000, null);
+            showDataSource.createEpisode(show.getId(), "Pilot", 1, 1, "Brilliant physicist roommates Leonard and Sheldon meet their new neighbor Penny, who begins showing them that as much as they know about science, they know little about actual living.");
+            showDataSource.createEpisode(show.getId(), "The Big Bran Hypothesis", 2, 1, "Brilliant physicist roommates Leonard and Sheldon meet their new neighbor Penny, who begins showing them that as much as they know about science, they know little about actual living.");
+
+            Log.v(ShowActivity.class.getName(), show.getTitle() + " " + show.getYear() + " " + show.getId());
+
+            return show;
+        }
+
+        @Override
+        protected void onPostExecute(Show show) {
+            showListAdapter.add(show);
+        }
     }
 
     private void deleteShowDialog(final int position) {
