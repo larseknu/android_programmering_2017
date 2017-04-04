@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">PlayingWithGoogleMaps</string>
+
+
+    <string name="normal">Normal</string>
+    <string name="hybrid">Hybrid</string>
+    <string name="satellite">Satellite</string>
+    <string name="terrain">Terrain</string>
+    <string name="none">None</string>
+
+
+    <string name="google_api_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDnRUUOYoZUXsCdI2moba_4nnYQqLItzuc</string>
+    <string name="kitty_attack">Kitty Attack</string>
+    <string name="kittens_remove">Kittens Remove</string>
+    <string name="draw_route">Draw Route</string>
+</resources>

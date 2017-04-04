@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/kitty_attack"
+        android:title="@string/kitty_attack"
+        android:icon="@android:drawable/ic_dialog_alert"
+        android:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/remove_kittens"
+        android:title="@string/kittens_remove"
+        android:icon="@android:drawable/ic_notification_clear_all"
+        android:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/draw_route"
+        android:title="@string/draw_route"
+        android:icon="@android:drawable/ic_dialog_map"
+        android:showAsAction="ifRoom"/>
+</menu>
