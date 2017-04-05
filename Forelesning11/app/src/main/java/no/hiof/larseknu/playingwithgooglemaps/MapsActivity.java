@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Criteria;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -41,6 +42,7 @@ import com.google.android.gms.maps.model.PolylineOptions;
 
 import org.w3c.dom.Document;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static com.google.android.gms.maps.GoogleMap.MAP_TYPE_HYBRID;
@@ -58,11 +60,12 @@ public class MapsActivity extends Activity implements OnMapReadyCallback, Google
     private ArrayList<Marker> kittyMarkers;
     private GMapV2Direction mapDirection;
 
-    private LatLng HIOF = new LatLng(59.128889, 11.352814);
-    private LatLng FREDRIKSTAD = new LatLng(59.21047628, 10.93994737);
-    private LatLng myPosition;
+    private static final LatLng HIOF = new LatLng(59.128889, 11.352814);
+    private static final LatLng FREDRIKSTAD = new LatLng(59.21047628, 10.93994737);
+    private LatLng myPosition = new LatLng(59.128889, 11.352814);
 
     private KittenLocation kittenLocation;
+    private ArrayList<KittenLocation> kittenLocations;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,17 +79,10 @@ public class MapsActivity extends Activity implements OnMapReadyCallback, Google
         mapDirection = new GMapV2Direction();
 
 
-        if (savedInstanceState == null) {
-            // Move the camera to the "starting position" at Østfold University College, with 13 in zoom and no tilt and bearing north
-            // map.moveCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition(HIOF, 13, 0, 0)));
-            // Animate the camera from the position to Fredrikstad Kino over a duration of 2 seconds
-            // map.animateCamera(CameraUpdateFactory.newLatLng(FREDRIKSTAD), 2000, null);
-
-        }
-        else {
+        if (savedInstanceState != null) {
             // We get our KittenLocation from the savedInstance bundle
             kittenLocation = savedInstanceState.getParcelable("found_kitten");
-
+            kittenLocations = savedInstanceState.getParcelableArrayList("found_all_kittens");
         }
 
         Spinner spinner = (Spinner) findViewById(R.id.layers_spinner);
@@ -106,6 +102,15 @@ public class MapsActivity extends Activity implements OnMapReadyCallback, Google
             KittenLocation kittenLocation = new KittenLocation(kittyMarker.getTitle(), new LatLng(kittyMarker.getPosition().latitude, kittyMarker.getPosition().longitude));
             // Put the KittenLocation data into the bundle
             outState.putParcelable("found_kitten", kittenLocation);
+
+            ArrayList<KittenLocation> kittenLocations = new ArrayList<>();
+
+            for (Marker marker:
+                 kittyMarkers) {
+                kittenLocations.add(new KittenLocation(marker.getTitle(), new LatLng(marker.getPosition().latitude, marker.getPosition().longitude)));
+            }
+
+            outState.putParcelableArrayList("found_all_kittens", kittenLocations);
         }
 
         super.onSaveInstanceState(outState);
@@ -115,17 +120,12 @@ public class MapsActivity extends Activity implements OnMapReadyCallback, Google
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
 
-        HIOF = new LatLng(59.128889, 11.352814);
-
         map.addMarker(new MarkerOptions().position(new LatLng(0,0)).title("Middle of the world"));
         map.addMarker(new MarkerOptions().position(HIOF).title("HiØ"));
 
-        map.moveCamera(CameraUpdateFactory.newLatLng(HIOF));
-        map.moveCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition(HIOF, 15, 0, 0)));
-
-        FREDRIKSTAD = new LatLng(59.21047628, 10.93994737);
-
-        map.animateCamera(CameraUpdateFactory.newLatLng(FREDRIKSTAD), 2000, null);
+        //map.moveCamera(CameraUpdateFactory.newLatLng(HIOF));
+        //map.moveCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition(HIOF, 15, 0, 0)));
+        //map.animateCamera(CameraUpdateFactory.newLatLng(FREDRIKSTAD), 2000, null);
 
         map.setOnMapLongClickListener(this);
 
@@ -140,12 +140,26 @@ public class MapsActivity extends Activity implements OnMapReadyCallback, Google
 
         setUiSettings();
 
+        if (kittenLocations != null) {
+            for (KittenLocation kitten:
+                 kittenLocations) {
+                addKittenMarker(kitten.getLatLng(), kitten.getName());
+            }
+        }
+
         if (kittenLocation != null) {
-
-
             // We add the kitten marker to the map
             addKittenMarker(kittenLocation.getLatLng(), "Found Kitten");
         }
+        else {
+            // Move the camera to the "starting position" at Østfold University College, with 13 in zoom and no tilt and bearing north
+            map.moveCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition(HIOF, 13, 0, 0)));
+            // Animate the camera from the position to Fredrikstad Kino over a duration of 2 seconds
+            map.animateCamera(CameraUpdateFactory.newLatLng(FREDRIKSTAD), 2000, null);
+
+            new DrawRoute().execute();
+        }
+
     }
 
     private void setUiSettings() {
@@ -154,28 +168,6 @@ public class MapsActivity extends Activity implements OnMapReadyCallback, Google
         uiSettings.setTiltGesturesEnabled(true);
         uiSettings.setZoomControlsEnabled(true);
         uiSettings.setMapToolbarEnabled(false);
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_ACCESS_LOCATION: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION ) == PackageManager.PERMISSION_GRANTED &&
-                            ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-                        map.setMyLocationEnabled(true);
-
-                } else {
-
-                    Toast.makeText(this, "You have not given all the required permissions. The application may not function as intended.", Toast.LENGTH_LONG).show();
-
-                }
-                return;
-            }
-        }
     }
 
     @Override
@@ -200,22 +192,44 @@ public class MapsActivity extends Activity implements OnMapReadyCallback, Google
     }
 
     @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_ACCESS_LOCATION: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    map.setMyLocationEnabled(true);
+                } else {
+                    // Show the user that we actually need this permission
+                    Toast.makeText(this, "You have not given all the required permissions. The application may not function as intended.", Toast.LENGTH_LONG).show();
+
+                }
+                return;
+            }
+        }
+    }
+
+    @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String layerType = (String) parent.getItemAtPosition(position);
-        if (layerType.equals(getString(R.string.hybrid))) {
-            map.setMapType(MAP_TYPE_HYBRID);
 
-        } else if (layerType.equals(getString(R.string.satellite))) {
-            map.setMapType(MAP_TYPE_SATELLITE);
+        if (map != null) {
+            if (layerType.equals(getString(R.string.hybrid))) {
+                map.setMapType(MAP_TYPE_HYBRID);
 
-        } else if (layerType.equals(getString(R.string.terrain))) {
-            map.setMapType(MAP_TYPE_TERRAIN);
+            } else if (layerType.equals(getString(R.string.satellite))) {
+                map.setMapType(MAP_TYPE_SATELLITE);
 
-        } else if (layerType.equals(getString(R.string.none))) {
-            map.setMapType(MAP_TYPE_NONE);
+            } else if (layerType.equals(getString(R.string.terrain))) {
+                map.setMapType(MAP_TYPE_TERRAIN);
 
-        } else {
-            map.setMapType(MAP_TYPE_NORMAL);
+            } else if (layerType.equals(getString(R.string.none))) {
+                map.setMapType(MAP_TYPE_NONE);
+
+            } else {
+                map.setMapType(MAP_TYPE_NORMAL);
+            }
         }
     }
 
@@ -267,6 +281,10 @@ public class MapsActivity extends Activity implements OnMapReadyCallback, Google
             case R.id.draw_route:
                 LocationManager locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
                 Criteria criteria = new Criteria();
+                criteria.setAccuracy(Criteria.ACCURACY_FINE);
+                criteria.setPowerRequirement(Criteria.POWER_HIGH);
+
+                locationManager.requestSingleUpdate(criteria, new NoOpLocationListener(), null);
 
                 Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
 
@@ -289,6 +307,7 @@ public class MapsActivity extends Activity implements OnMapReadyCallback, Google
                 return new LatLng(lat, lng);
             }
         };
+
         Property<Marker, LatLng> property = Property.of(Marker.class, LatLng.class, "position");
         ObjectAnimator animator = ObjectAnimator.ofObject(marker, property, typeEvaluator, finalPosition);
         animator.setDuration(1000);
@@ -303,4 +322,27 @@ public class MapsActivity extends Activity implements OnMapReadyCallback, Google
         kittyCounter = 0;
     }
 
+
+    class NoOpLocationListener implements LocationListener {
+
+        @Override
+        public void onLocationChanged(Location location) {
+
+        }
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+
+        }
+
+        @Override
+        public void onProviderEnabled(String provider) {
+
+        }
+
+        @Override
+        public void onProviderDisabled(String provider) {
+
+        }
+    }
 }
