@@ -1,6 +1,12 @@
 # Eksempler Android-Programmering 2017
 Eksempler til kurs i Android-Programmering 2017 ved Høgskolen i Østfold
 
+## Forelesning 12
+* Publishing
+
+## Forelesning 11
+* Google Maps
+
 ## Forelesning 10
 * SQLite
 
