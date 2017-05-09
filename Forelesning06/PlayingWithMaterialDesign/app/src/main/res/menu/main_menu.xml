@@ -2,9 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item
+    <!--item
         android:id="@+id/colours"
-        android:icon="@drawable/ic_color"
+        android:icon="@drawable/ic_invert_colors"
         android:title="Colors"
         app:showAsAction="ifRoom|withText" />
 
@@ -12,11 +12,11 @@
         android:id="@+id/snackbar"
         android:icon="@android:drawable/ic_menu_preferences"
         android:title="Snackbar"
-        app:showAsAction="never" />
+        app:showAsAction="never" /-->
 
     <item
         android:id="@+id/animals"
-        android:icon="@drawable/ic_animal"
+        android:icon="@drawable/ic_loyalty"
         android:title="Animals"
         app:showAsAction="always" />
 
